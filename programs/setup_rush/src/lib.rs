@@ -11,6 +11,11 @@
 //! mint the authority registered with `set_token` (`TokenConfig`, keyed by mint): classic SPL tokens
 //! and Token-2022 both, through the token interface. `Config.token_mint` and `token_stake` remain for
 //! the account layout; v3 no longer reads them.
+//!
+//! v4 adds the pot fee (Max, Nov 6: "we should have the 5% fee on every single pot there is"): `set_fee` writes a
+//! separate `FeeConfig` PDA, and each claim pays `fee_bps` of the pot to its treasury, for pools from the fee's
+//! `since_day` on. Config, TokenConfig, Pool, Entry, Player and Delegation keep their layouts, so the open pools, the
+//! claimed history and the devnet Config stay valid through the upgrade. Refunds never pay a fee.
 #![allow(unexpected_cfgs)]
 use anchor_lang::prelude::*;
 use anchor_lang::system_program::{transfer, Transfer};
@@ -25,6 +30,8 @@ pub const MAX_DELEGATION_SECONDS: i64 = 7 * 86_400;
 pub const MAX_DELEGATED_ENTRIES: u16 = 50;
 /// Runs that started before midnight UTC can still be posted for this long after it.
 pub const POST_GRACE: i64 = 15 * 60;
+/// The pot fee's cap, the 500 bps rush_arena allows a room.
+pub const MAX_FEE_BPS: u16 = 500;
 
 #[program]
 pub mod setup_rush {
@@ -59,6 +66,22 @@ pub mod setup_rush {
         t.enabled = enabled;
         t.bump = ctx.bumps.token_config;
         emit!(TokenSet { mint: t.mint, stake, enabled });
+        Ok(())
+    }
+
+    /// The pot fee: `fee_bps` of each claimed pot goes to `treasury`. A new rate takes effect with the next UTC day's
+    /// pools, so nobody who already entered pays a fee they did not see; a treasury-only change keeps the day.
+    pub fn set_fee(ctx: Context<SetFee>, fee_bps: u16, treasury: Pubkey) -> Result<()> {
+        require!(fee_bps <= MAX_FEE_BPS, RushError::FeeTooHigh);
+        let today = (Clock::get()?.unix_timestamp / SECONDS_PER_DAY) as u32;
+        let f = &mut ctx.accounts.fee_config;
+        if f.since_day == 0 || f.fee_bps != fee_bps {
+            f.since_day = today + 1;
+        }
+        f.fee_bps = fee_bps;
+        f.treasury = treasury;
+        f.bump = ctx.bumps.fee_config;
+        emit!(FeeSet { fee_bps, treasury, since_day: f.since_day });
         Ok(())
     }
 
@@ -176,12 +199,13 @@ pub mod setup_rush {
             p.pot = 0;
             a
         };
-        let pool_info = ctx.accounts.pool.to_account_info();
-        let player_info = ctx.accounts.player.to_account_info();
-        **pool_info.try_borrow_mut_lamports()? -= amount;
-        **player_info.try_borrow_mut_lamports()? += amount;
+        let (fee, fee_to) = due_fee(&ctx.accounts.fee_config.to_account_info(), day, amount)?;
+        pay_sol_pot(&ctx.accounts.pool.to_account_info(), &ctx.accounts.player.to_account_info(), &ctx.accounts.treasury.to_account_info(), amount, fee, fee_to)?;
         ctx.accounts.player_stats.wins += 1;
-        emit!(Claimed { day, mint: Pubkey::default(), player: ctx.accounts.player.key(), amount });
+        if fee > 0 {
+            emit!(FeeTaken { day, mint: Pubkey::default(), treasury: fee_to, amount: fee });
+        }
+        emit!(Claimed { day, mint: Pubkey::default(), player: ctx.accounts.player.key(), amount: amount - fee });
         Ok(())
     }
 
@@ -201,9 +225,27 @@ pub mod setup_rush {
             p.pot = 0;
             a
         };
+        let (fee, fee_to) = due_fee(&ctx.accounts.fee_config.to_account_info(), day, amount)?;
         let day_bytes = day.to_le_bytes();
         let mint_bytes = mint.to_bytes();
         let seeds: &[&[u8]] = &[b"pool", &day_bytes[..], &mint_bytes[..], &[ctx.accounts.pool.bump]];
+        if fee > 0 {
+            check_treasury_token(&ctx.accounts.treasury_token.to_account_info(), &ctx.accounts.token_program.key(), &fee_to, &mint)?;
+            token_interface::transfer_checked(
+                CpiContext::new_with_signer(
+                    ctx.accounts.token_program.key(),
+                    TransferChecked {
+                        from: ctx.accounts.vault.to_account_info(),
+                        mint: ctx.accounts.mint.to_account_info(),
+                        to: ctx.accounts.treasury_token.to_account_info(),
+                        authority: ctx.accounts.pool.to_account_info(),
+                    },
+                    &[seeds],
+                ),
+                fee,
+                ctx.accounts.mint.decimals,
+            )?;
+        }
         token_interface::transfer_checked(
             CpiContext::new_with_signer(
                 ctx.accounts.token_program.key(),
@@ -215,11 +257,14 @@ pub mod setup_rush {
                 },
                 &[seeds],
             ),
-            amount,
+            amount - fee,
             ctx.accounts.mint.decimals,
         )?;
         ctx.accounts.player_stats.wins += 1;
-        emit!(Claimed { day, mint, player: ctx.accounts.player.key(), amount });
+        if fee > 0 {
+            emit!(FeeTaken { day, mint, treasury: fee_to, amount: fee });
+        }
+        emit!(Claimed { day, mint, player: ctx.accounts.player.key(), amount: amount - fee });
         Ok(())
     }
 
@@ -384,12 +429,13 @@ pub mod setup_rush {
             p.pot = 0;
             a
         };
-        let pool_info = ctx.accounts.pool.to_account_info();
-        let owner_info = ctx.accounts.owner.to_account_info();
-        **pool_info.try_borrow_mut_lamports()? -= amount;
-        **owner_info.try_borrow_mut_lamports()? += amount;
+        let (fee, fee_to) = due_fee(&ctx.accounts.fee_config.to_account_info(), day, amount)?;
+        pay_sol_pot(&ctx.accounts.pool.to_account_info(), &ctx.accounts.owner.to_account_info(), &ctx.accounts.treasury.to_account_info(), amount, fee, fee_to)?;
         ctx.accounts.player_stats.wins += 1;
-        emit!(Claimed { day, mint: Pubkey::default(), player: owner, amount });
+        if fee > 0 {
+            emit!(FeeTaken { day, mint: Pubkey::default(), treasury: fee_to, amount: fee });
+        }
+        emit!(Claimed { day, mint: Pubkey::default(), player: owner, amount: amount - fee });
         Ok(())
     }
 
@@ -410,9 +456,27 @@ pub mod setup_rush {
             p.pot = 0;
             a
         };
+        let (fee, fee_to) = due_fee(&ctx.accounts.fee_config.to_account_info(), day, amount)?;
         let day_bytes = day.to_le_bytes();
         let mint_bytes = mint.to_bytes();
         let seeds: &[&[u8]] = &[b"pool", &day_bytes[..], &mint_bytes[..], &[ctx.accounts.pool.bump]];
+        if fee > 0 {
+            check_treasury_token(&ctx.accounts.treasury_token.to_account_info(), &ctx.accounts.token_program.key(), &fee_to, &mint)?;
+            token_interface::transfer_checked(
+                CpiContext::new_with_signer(
+                    ctx.accounts.token_program.key(),
+                    TransferChecked {
+                        from: ctx.accounts.vault.to_account_info(),
+                        mint: ctx.accounts.mint.to_account_info(),
+                        to: ctx.accounts.treasury_token.to_account_info(),
+                        authority: ctx.accounts.pool.to_account_info(),
+                    },
+                    &[seeds],
+                ),
+                fee,
+                ctx.accounts.mint.decimals,
+            )?;
+        }
         token_interface::transfer_checked(
             CpiContext::new_with_signer(
                 ctx.accounts.token_program.key(),
@@ -424,11 +488,14 @@ pub mod setup_rush {
                 },
                 &[seeds],
             ),
-            amount,
+            amount - fee,
             ctx.accounts.mint.decimals,
         )?;
         ctx.accounts.player_stats.wins += 1;
-        emit!(Claimed { day, mint, player: owner, amount });
+        if fee > 0 {
+            emit!(FeeTaken { day, mint, treasury: fee_to, amount: fee });
+        }
+        emit!(Claimed { day, mint, player: owner, amount: amount - fee });
         Ok(())
     }
 
@@ -478,6 +545,40 @@ pub mod setup_rush {
 }
 
 /// One entrant's share of a pot nobody won: an equal split of what is left, the last entrant taking the remainder.
+/// The fee a claimed pot pays and where it goes: the configured rate for pools from `since_day` on. Before the first
+/// `set_fee` the fee account does not exist and nothing is due, so claims keep working through the upgrade.
+fn due_fee(fee_config: &AccountInfo, day: u32, pot: u64) -> Result<(u64, Pubkey)> {
+    if fee_config.owner != &crate::ID || fee_config.data_is_empty() {
+        return Ok((0, Pubkey::default()));
+    }
+    let f = FeeConfig::try_deserialize(&mut &fee_config.try_borrow_data()?[..])?;
+    if f.fee_bps == 0 || day < f.since_day {
+        return Ok((0, f.treasury));
+    }
+    let fee = (pot as u128 * f.fee_bps.min(MAX_FEE_BPS) as u128 / 10_000) as u64;
+    Ok((fee, f.treasury))
+}
+
+/// A claimed SOL pot leaves its pool: the fee to the fee account's treasury, the rest to the winner.
+fn pay_sol_pot<'info>(pool: &AccountInfo<'info>, winner: &AccountInfo<'info>, treasury: &AccountInfo<'info>, amount: u64, fee: u64, fee_to: Pubkey) -> Result<()> {
+    **pool.try_borrow_mut_lamports()? -= amount;
+    if fee > 0 {
+        require_keys_eq!(treasury.key(), fee_to, RushError::WrongTreasury);
+        **treasury.try_borrow_mut_lamports()? += fee;
+    }
+    **winner.try_borrow_mut_lamports()? += amount - fee;
+    Ok(())
+}
+
+/// The token account a token pot's fee goes to: the treasury's, in the pool's mint, under the pool's token program.
+fn check_treasury_token(info: &AccountInfo, token_program: &Pubkey, treasury: &Pubkey, mint: &Pubkey) -> Result<()> {
+    require_keys_eq!(*info.owner, *token_program, RushError::WrongTreasury);
+    let t = TokenAccount::try_deserialize(&mut &info.try_borrow_data()?[..])?;
+    require_keys_eq!(t.owner, *treasury, RushError::WrongTreasury);
+    require_keys_eq!(t.mint, *mint, RushError::WrongMint);
+    Ok(())
+}
+
 fn refund_share(p: &mut Pool) -> Result<u64> {
     require!(p.posted == 0, RushError::PotHasScores);
     require!(!p.claimed, RushError::PoolClosed);
@@ -554,6 +655,17 @@ pub struct SetToken<'info> {
 }
 
 #[derive(Accounts)]
+pub struct SetFee<'info> {
+    #[account(seeds = [b"config".as_ref()], bump = config.bump, has_one = authority)]
+    pub config: Account<'info, Config>,
+    #[account(init_if_needed, payer = authority, space = 8 + FeeConfig::INIT_SPACE, seeds = [b"fee".as_ref()], bump)]
+    pub fee_config: Account<'info, FeeConfig>,
+    #[account(mut)]
+    pub authority: Signer<'info>,
+    pub system_program: Program<'info, System>,
+}
+
+#[derive(Accounts)]
 #[instruction(day: u32)]
 pub struct Enter<'info> {
     #[account(seeds = [b"config".as_ref()], bump = config.bump)]
@@ -623,25 +735,39 @@ pub struct Claim<'info> {
     pub player_stats: Account<'info, Player>,
     #[account(mut)]
     pub player: Signer<'info>,
+    /// CHECK: the fee PDA, read in the handler; before the first `set_fee` it is empty and no fee is due.
+    #[account(seeds = [b"fee".as_ref()], bump)]
+    pub fee_config: UncheckedAccount<'info>,
+    /// CHECK: receives the fee, and must be the fee account's treasury whenever a fee is due (checked in the handler).
+    #[account(mut)]
+    pub treasury: UncheckedAccount<'info>,
 }
 
 #[derive(Accounts)]
 #[instruction(day: u32)]
 pub struct ClaimToken<'info> {
+    // Boxed like EnterToken: two more accounts (the fee PDA and the treasury's token account) keep the frame inside
+    // the 4 KB SBF stack.
     pub mint: Box<InterfaceAccount<'info, Mint>>,
     #[account(mut, seeds = [b"pool".as_ref(), &day.to_le_bytes()[..], mint.key().as_ref()], bump = pool.bump)]
-    pub pool: Account<'info, Pool>,
+    pub pool: Box<Account<'info, Pool>>,
     #[account(mut, associated_token::mint = mint, associated_token::authority = pool, associated_token::token_program = token_program)]
     pub vault: Box<InterfaceAccount<'info, TokenAccount>>,
     #[account(init_if_needed, payer = player, associated_token::mint = mint, associated_token::authority = player, associated_token::token_program = token_program)]
     pub player_token: Box<InterfaceAccount<'info, TokenAccount>>,
     #[account(mut, seeds = [b"player".as_ref(), player.key().as_ref()], bump = player_stats.bump)]
-    pub player_stats: Account<'info, Player>,
+    pub player_stats: Box<Account<'info, Player>>,
     #[account(mut)]
     pub player: Signer<'info>,
     pub token_program: Interface<'info, TokenInterface>,
     pub associated_token_program: Program<'info, AssociatedToken>,
     pub system_program: Program<'info, System>,
+    /// CHECK: the fee PDA, read in the handler; before the first `set_fee` it is empty and no fee is due.
+    #[account(seeds = [b"fee".as_ref()], bump)]
+    pub fee_config: UncheckedAccount<'info>,
+    /// CHECK: the treasury's token account for this mint, checked in the handler whenever a fee is due.
+    #[account(mut)]
+    pub treasury_token: UncheckedAccount<'info>,
 }
 
 #[derive(Accounts)]
@@ -734,10 +860,16 @@ pub struct ClaimDelegated<'info> {
     pub pool: Box<Account<'info, Pool>>,
     #[account(mut, seeds = [b"player".as_ref(), owner.key().as_ref()], bump = player_stats.bump)]
     pub player_stats: Box<Account<'info, Player>>,
-    /// CHECK: the delegation's owner (has_one above); the pot is paid here and nowhere else.
+    /// CHECK: the delegation's owner (has_one above); the pot, less any fee, is paid here and nowhere else.
     #[account(mut)]
     pub owner: UncheckedAccount<'info>,
     pub signer: Signer<'info>,
+    /// CHECK: the fee PDA, read in the handler; before the first `set_fee` it is empty and no fee is due.
+    #[account(seeds = [b"fee".as_ref()], bump)]
+    pub fee_config: UncheckedAccount<'info>,
+    /// CHECK: receives the fee, and must be the fee account's treasury whenever a fee is due (checked in the handler).
+    #[account(mut)]
+    pub treasury: UncheckedAccount<'info>,
 }
 
 #[derive(Accounts)]
@@ -761,6 +893,12 @@ pub struct ClaimTokenDelegated<'info> {
     pub token_program: Interface<'info, TokenInterface>,
     pub associated_token_program: Program<'info, AssociatedToken>,
     pub system_program: Program<'info, System>,
+    /// CHECK: the fee PDA, read in the handler; before the first `set_fee` it is empty and no fee is due.
+    #[account(seeds = [b"fee".as_ref()], bump)]
+    pub fee_config: UncheckedAccount<'info>,
+    /// CHECK: the treasury's token account for this mint, checked in the handler whenever a fee is due.
+    #[account(mut)]
+    pub treasury_token: UncheckedAccount<'info>,
 }
 
 #[derive(Accounts)]
@@ -832,6 +970,17 @@ pub struct TokenConfig {
     pub bump: u8,
 }
 
+/// The pot fee (v4): `fee_bps` of each claimed pot goes to `treasury`, for pools of `since_day` and later. Its own PDA
+/// (seeds "fee"), so every v3 account keeps its layout.
+#[account]
+#[derive(InitSpace)]
+pub struct FeeConfig {
+    pub treasury: Pubkey,
+    pub fee_bps: u16,
+    pub since_day: u32,
+    pub bump: u8,
+}
+
 #[account]
 #[derive(InitSpace)]
 pub struct Pool {
@@ -886,6 +1035,10 @@ pub struct TokenSet { pub mint: Pubkey, pub stake: u64, pub enabled: bool }
 pub struct Delegated { pub owner: Pubkey, pub signer: Pubkey, pub max_entries: u16, pub expires_at: i64 }
 #[event]
 pub struct Refunded { pub day: u32, pub mint: Pubkey, pub player: Pubkey, pub amount: u64 }
+#[event]
+pub struct FeeSet { pub fee_bps: u16, pub treasury: Pubkey, pub since_day: u32 }
+#[event]
+pub struct FeeTaken { pub day: u32, pub mint: Pubkey, pub treasury: Pubkey, pub amount: u64 }
 
 #[error_code]
 pub enum RushError {
@@ -921,4 +1074,8 @@ pub enum RushError {
     PotHasScores,
     #[msg("Nothing left to refund in this pool")]
     NothingToRefund,
+    #[msg("The fee is capped at 5%")]
+    FeeTooHigh,
+    #[msg("That is not the fee treasury")]
+    WrongTreasury,
 }
