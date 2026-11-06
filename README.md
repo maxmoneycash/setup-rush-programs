@@ -7,7 +7,7 @@ The two Anchor programs behind [Setup Rush](https://setuprush.com), published so
 | `rush_arena` | Live Match: escrowed game balances, capped play permissions, House-bot and friend rooms, settlement and refunds | [`5ZkKsZVj1ZxtiMnydGn82ojs4rSZ3ARpWLfP7w9AFYo9`](https://explorer.solana.com/address/5ZkKsZVj1ZxtiMnydGn82ojs4rSZ3ARpWLfP7w9AFYo9?cluster=devnet) |
 | `setup_rush` | The Daily ("Clock In"): one shared chart a day, replay-verified scores, best score takes the pot less a fee of at most 5% | [`2jCQ5PCnNCPP4Kurf4Zz31YAzPzCk3zSfsDWd4eMZRgV`](https://explorer.solana.com/address/2jCQ5PCnNCPP4Kurf4Zz31YAzPzCk3zSfsDWd4eMZRgV?cluster=devnet) |
 
-`rush_arena`'s interface (IDL) is published on chain through the program-metadata program, so Explorer lists its instructions and decodes its transactions.
+Both programs' interfaces (IDLs) are published on chain through the program-metadata program, so Explorer lists their instructions and decodes their transactions: `rush_arena`'s since 6 November 00:32 UTC, `setup_rush` v4's since 6 November 08:48 UTC ([IDL tab](https://explorer.solana.com/address/2jCQ5PCnNCPP4Kurf4Zz31YAzPzCk3zSfsDWd4eMZRgV/idl?cluster=devnet); the same JSON as `release/setup_rush.json`, built with `anchor idl build` from 2f04621).
 
 ## Check a build
 
@@ -17,7 +17,7 @@ solana-verify get-executable-hash target/deploy/rush_arena.so
 solana-verify get-program-hash -u devnet 5ZkKsZVj1ZxtiMnydGn82ojs4rSZ3ARpWLfP7w9AFYo9
 ```
 
-`release/` holds the reviewed `rush_arena` binary, its IDL and the rebuild evidence from its first devnet deploy.
+`release/` holds the reviewed `rush_arena` binary, its IDL and the rebuild evidence from its first devnet deploy, and `setup_rush`'s v4 IDL.
 
 ## Verification status (6 November 2026)
 
