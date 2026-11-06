@@ -1,0 +1,639 @@
+{
+  "at": "2026-10-12T12:41:48.011Z",
+  "rpc": "http://127.0.0.1:8897",
+  "program": "5ZkKsZVj1ZxtiMnydGn82ojs4rSZ3ARpWLfP7w9AFYo9",
+  "genesis": "4kYUTtfaowZrfdNgRG5x6xnnzDFjMzzNWAHHAvzK9iFX",
+  "checks": [
+    "initializer must own program upgrade authority",
+    "duplicate initialize",
+    "only authority registers assets",
+    "zero SOL deposit",
+    "owner cannot withdraw someone else credit",
+    "withdraw more than available",
+    "deposit blocked while paused",
+    "deposit blocked for disabled asset",
+    "wrong source owner",
+    "withdraw cannot redirect token destination",
+    "original signed delayed grant rejected after cross-client revoke",
+    "old permissive grant ABI is no longer accepted",
+    "competing same-epoch grant cannot overwrite",
+    "frozen default blocks new deposit",
+    "issuer-frozen vault transfer rolls back",
+    "active transfer hook fails closed",
+    "unsupported hook withdrawal rolls back",
+    "issuer delegate shortfall stops withdrawal",
+    "issuer delegate shortfall stops new deposits",
+    "transfer fee mint cannot be admitted",
+    "revoked session rejected",
+    "old signed entry rejected after same-key regrant",
+    "changed stake rejected",
+    "wrong selected rules rejected",
+    "missing strategy intent rejected",
+    "duplicate room entry",
+    "session total spending bounded before entry count reached",
+    "session cannot withdraw",
+    "session per-round cap",
+    "manual authorization cannot enter automatic room",
+    "session fee ceiling",
+    "expired session cannot enter",
+    "session entry count before spending budget reached",
+    "full room rejects another owner",
+    "early result rejected",
+    "premature cancellation rejected",
+    "premature credit rejected",
+    "late entry rejected",
+    "wrong verifier rejected",
+    "posted result cannot be rewritten",
+    "finalized room cannot be cancelled",
+    "partial results cannot finalize",
+    "cannot close with unpaid entries",
+    "late score rejected",
+    "completed results still need timely finalization",
+    "duplicate claim single-winner",
+    "rent cannot be redirected",
+    "duplicate claim single-winner",
+    "rent cannot be redirected",
+    "duplicate claim single-winner",
+    "rent cannot be redirected",
+    "duplicate fee",
+    "duplicate claim partial tie dust",
+    "rent cannot be redirected",
+    "duplicate claim partial tie dust",
+    "rent cannot be redirected",
+    "duplicate claim partial tie dust",
+    "rent cannot be redirected",
+    "duplicate fee",
+    "duplicate claim all tie no fee",
+    "rent cannot be redirected",
+    "duplicate claim all tie no fee",
+    "rent cannot be redirected",
+    "duplicate claim all tie no fee",
+    "rent cannot be redirected",
+    "duplicate claim missing score timeout",
+    "rent cannot be redirected",
+    "duplicate claim missing score timeout",
+    "rent cannot be redirected",
+    "duplicate claim unfilled lobby refund",
+    "rent cannot be redirected",
+    "duplicate claim Token-2022 round",
+    "rent cannot be redirected",
+    "duplicate claim Token-2022 round",
+    "rent cannot be redirected",
+    "duplicate fee",
+    "duplicate claim session entry limit",
+    "rent cannot be redirected",
+    "duplicate claim all scored but unfinalized timeout",
+    "rent cannot be redirected",
+    "duplicate claim all scored but unfinalized timeout",
+    "rent cannot be redirected",
+    "closed room ID cannot be recreated",
+    "unintended admin cannot accept",
+    "former admin no longer configures"
+  ],
+  "receipts": [
+    {
+      "label": "fund test owners",
+      "signature": "244eKAMXL7DPHpg4p4iE8bSBB8GfVCu3Gu38d4oX5YTmvkF6jRHugfc9XCb5LrAkyUzpfyzNkn7ossdKBUsEUkXo"
+    },
+    {
+      "label": "initialize",
+      "signature": "AigNti3DEnM7xcAisHzaEgBLM9nSvwMnzkyn34wQyaNeVQcCY3vM48Z77hJihyC9reQigHcyJJcVW4LwL2u98UA"
+    },
+    {
+      "label": "register SOL",
+      "signature": "2WUDZLLpRhXHWR8RfuBg5VSqMudmpp4xg21b9FQ8qBCX6HkWd4uF66J62ufUHDRMqXSSwKqBdSvL1MCR7tQkY1iN"
+    },
+    {
+      "label": "deposit SOL",
+      "signature": "jBnQGrMEKvxCsTimXE9an4csLXMsLtoWwSqSU2gfKPzg6uEgDis9sFrV3Yoy5XDnS4oMyQFrhzjuATGG7j1JJpS"
+    },
+    {
+      "label": "deposit SOL",
+      "signature": "2u5sMwtPayTBhh1LZXE5xF5dFQiuY9Yhv4WFdr3wusjqUR7b41NEhpt75Bpk6YRGHhpPwNePYddeQBfNJo9or83H"
+    },
+    {
+      "label": "deposit SOL",
+      "signature": "3MX1R4SmcgxFrEPw1KYQmgcHK8r4ExsJ869TshyC6FFKEVgtjEhyeRREYuZnrDzgVxxh6xWZGgF6C1mQAoJWc25Q"
+    },
+    {
+      "label": "pause new activity",
+      "signature": "4PGrKtNtq5Hdm3sYBjVT4ae77xF6vDPBKTRNLJuxMwPdGwLpwnAR3ax8JVDui1DUV9sFQJvzWiwUe63Je5BUUBE3"
+    },
+    {
+      "label": "withdraw remains available while paused",
+      "signature": "5SF5YhjJqhkzzzabt1dQKKSXuKkwHjFKB5X4XRNQ86ABxhUGsCedVaGerZesvHKciaMF5dSci9mQySLDEdFxcCKz"
+    },
+    {
+      "label": "resume",
+      "signature": "4Awpnt7ZB2TuuMxJ5MhmNM3HUhDfTRTRSdfFFd7mfjr2kCTHkFTDXSg2Q5sizDZyaCzWhu77LcC49UsoyM4qcTcK"
+    },
+    {
+      "label": "disable SOL",
+      "signature": "5EudAkCE4wgJThYsNA3oHBKDfXKUpF1zdzXEZTov1yKsMwMT44RgoSsQTCeg4Hw98iytWTdkyraS1YnAodkESciy"
+    },
+    {
+      "label": "withdraw remains available while asset disabled",
+      "signature": "U7QUPAvrirYzuphvpC82zpEWbkjSGJtumCbgNxTnR8dxVozJXwseWdFJLF4mUq7dmAXkiqaQbBenGg6kUvFDYVs"
+    },
+    {
+      "label": "enable SOL",
+      "signature": "5TDknnrdDCraw5R4jt9mHA9ZsNMpcuvWDKVBCHyvuSP61uAwdTz5ffZeTSwF4uFPxwiRxMZ8X1Q2NcSHqs21WYm6"
+    },
+    {
+      "label": "direct SOL donation",
+      "signature": "3PB3P17JRw2iNqw4CaMXRnGkYD5ipNTjdr75Z144cLsuJPurgZ1b3QKVKmmVqVpEoMd5FbKD6kxRwt6KjKLPecRW"
+    },
+    {
+      "label": "register token with pre-created donated vault",
+      "signature": "3QL25AtR5Eao1xQrKYwB1QiRFUVH4VC9VPKrPDzEaR2Accb4YWhqutVScZ2SZfK5QSbpUgskSNJ6cpmmFha5dAZA"
+    },
+    {
+      "label": "deposit six-decimal token",
+      "signature": "2AAKNYX75PaXvUdtzE1VRgPmxaxH6Rwo3Wck6KPy4e7Y4Up7RQPHBqudFUy1n9VFrxiu25ZDg1aLVzKZ7GjixoLU"
+    },
+    {
+      "label": "deposit six-decimal token",
+      "signature": "jJh5qZPokXEjxrmXXddC4Q69JkVxbZmhJjJvU9n71WidTAz97w3tw7vtTjiyVscaYvMoMyxRZMxQEHcmVqrFarB"
+    },
+    {
+      "label": "deposit six-decimal token",
+      "signature": "5TJVbofWSGLxj4NHN35u4hwToDDVuw7vqKMvuKeXMxGNuwyrgxgfZmw2wx6615RbANyaV72MZcWwM8bYm1oQBEQw"
+    },
+    {
+      "label": "token withdrawal",
+      "signature": "2EQaJtysumNoGYhRe4X9xGQCoDpcrcizPHyRvNMDdwGBqJbNrKFCr1jKTwVCgWrnSL5UGk8nW3iWRREJCjEoe6aB"
+    },
+    {
+      "label": "USDC-only owner deposit and session with sponsored rent",
+      "signature": "Z48QBxFiVt49Y3eJNAGvKZjv7MPBBBcqzGrco7ykbLKv57sqAskUwLyiP1Wg7jNy6jAkQVNAuzteSfP4dxmFJ9A"
+    },
+    {
+      "label": "USDC-only owner full withdrawal with sponsored fee",
+      "signature": "3a1WSavepWJrLTrJHtitACUFVzZk588UBbKwtgmbptPa7SfJJwjXDaUiVFBVisLXxMdp5VRD73a2aiX1ZhQp1149"
+    },
+    {
+      "label": "other client revokes before withheld grant lands",
+      "signature": "2FBVVNbuDh5sobhhntMqEBcvS1xb7MXGvB475uhDNSTGSq8bTPwnHZpnCowW991oUh8JtFoEhR98Dhv8RG84cz6W"
+    },
+    {
+      "label": "grant session",
+      "signature": "PrYJPSaVBsMz7zTcrLMHagTAtomaNkSsPGjqej2BxSYiX7VEMNAAVQp6TA9XKMAhieA8ZDNr88onhDwDsXrxZf5"
+    },
+    {
+      "label": "first of two same-epoch grants wins",
+      "signature": "VRzRP7vdrnf5eBSgxwAf9KfXa8EWES2HCy79FiBdRiaXkFGnc3iWirtNd9kHGdM3F87yEa4H8ahUTVxLYyA4MqL"
+    },
+    {
+      "label": "revoke after grant invalidates the session",
+      "signature": "2QoofV25ibSDWqzdLXjpXBE2uVZ2DV8gnMYixW1ER8dyQEwbsrwCRf3mDhR3fuLUWqDrZmKhAt61teLJ4MU19FG5"
+    },
+    {
+      "label": "grant session",
+      "signature": "4tnMR6vPD9M6rVrcCjwY2qXZPyrcRGLMb6GbcWwjuDdSaYNsm5R8LKcKwPFW31tkXpuSPo8vh2gWjg7KV9R91urU"
+    },
+    {
+      "label": "create CASH-shaped Token-2022 mint",
+      "signature": "4iBMyK3qY7QMc8mKvpJmEwWYmyCaR4NMJ1rMPA71hGV1qYGGaAfbQCzwdf2f1GGe6Mdjxxb42bah9grzrdZRYoWj"
+    },
+    {
+      "label": "register Token-2022 mint",
+      "signature": "5d2Vs7pUAFU8jn1Hi69iNQZMpEF7RMPwuRjpofdfrYhXaa2Ufv2ZoyHAJf2zcSv1KeFerKHf4Hu8ESviQcu1NbrU"
+    },
+    {
+      "label": "Token-2022 deposit",
+      "signature": "2QQHyVoKGSuA9JPZrp5uD18EWSiBxrGp9rRGpcmoQt7Qx5HzyGXKXsyCXH2yVXPnq8K9JHez3HpcApz657zfV1Ph"
+    },
+    {
+      "label": "issuer changes only default state to frozen",
+      "signature": "3EVuKAMgzcaHLEchoKz4EHycS3GUuR9od7U9SbXWjPp7deLPk6Rxdtg69cXJNDoyohb1PSePdginVWG6jL2ZxVmj"
+    },
+    {
+      "label": "existing unfrozen accounts can withdraw despite frozen default",
+      "signature": "4FWfMAW9nhRDny7BQZu28hG9qyyEDG2MWRwM9HBru3S22ovPEYdMYN4Q64vABWaNTpLEKAx9T2j4Yc2rtxnKBK7N"
+    },
+    {
+      "label": "restore default initialized",
+      "signature": "2su1PAe7woy1F44SFgaiaRKJDBArFueKQjV147hQUh45a1ySb6unNyrqZRVn1n2Fi8TwJPbWL6hnzEG1muH2J7Lq"
+    },
+    {
+      "label": "issuer enables transfer hook",
+      "signature": "HMTYiBxEuHdY199atiNDxbRh5Z7cemviEiZNZmywnWRyFMCNCon8euuX3VhfjTHM1Jn2MeVRnLfnJVzJqJNAi2t"
+    },
+    {
+      "label": "issuer disables transfer hook",
+      "signature": "5TuH6QTQKXk2JfomAtZBUdMJxtSYt2ifaRKUT4Gz2idRabCxBudtHFZqaQRrputCY6rsbdUbLeJztb8TgLtUSLjU"
+    },
+    {
+      "label": "withdraw after exact backing restored",
+      "signature": "wWjwNsaEiEoM2agMcBHcTUXwJtYW2LFAm5gHen6j7f7BMmBa15TnZXYPw1eD8q8S5dpSmPpDPDSgwnmC5csfiNS"
+    },
+    {
+      "label": "create unsupported transfer-fee mint",
+      "signature": "3bdW4VLjdh99mw8ffQ18xMZ9UV9WY86p23EFoF3iffWPtjiPMGksBb22NokdZ9DD3pjA3JbH6xZ531TgDe6WaoQ8"
+    },
+    {
+      "label": "create single-winner",
+      "signature": "3THba2Mu6kBmCPbbG89f97RnhAiHTguZwG3v4vfwyX7pULewYGsb3XjiL1WWRjpwRv3q7ZzEQo4FzhSjqQV9J97i"
+    },
+    {
+      "label": "create partial tie dust",
+      "signature": "4JRJ8238fmAYcKSNrwUPSP1bUuQ3P5xc2NeNqdsT7JLaMn18hm6XcVwG2JZrbGAoxYa9NCUtQMvQubeHkN5LXbYP"
+    },
+    {
+      "label": "create all tie no fee",
+      "signature": "3EXDxeUR61uPh27QkNbtQENFHQ3tjdGsUHfq1F6zBPsf5QdjziYiDQ1gxH7ZY72UqL9nJ7HhzN8NA3QqWfXiqUiU"
+    },
+    {
+      "label": "create missing score timeout",
+      "signature": "5amEkrJKbhXkGM6N2RNTJD8bqJ9DWhMkKqe2zqQTTasKeAcPiEEUbheHyrB1RefLFWzFs2gGaPeuLCBgdris3c8r"
+    },
+    {
+      "label": "create unfilled lobby refund",
+      "signature": "9MantVPioys3HZSnyATBSDJJyNxD4yiUVrsMayYFRxDNx2Mw28KjYPVKxUCpjuoNrzGspvHPZmNt9NGQfrv5xD6"
+    },
+    {
+      "label": "create Token-2022 round",
+      "signature": "JuNVnJR8i91wkgPVta8gRkXF8c8WHNz9M7Ck9tyRRFn2muM3dpc2SozLFaaq2KHFaxdHqp1TCimrKe4Lni45i5o"
+    },
+    {
+      "label": "create empty lobby",
+      "signature": "3rpUjboRqH6P3tvNAoX5ehjcWfYh3ryh7ccMKAi4j6w6KJF3Kun6WfFZiqWrCqYb9Bqw9n5qa2YnoYRiJVbERfQf"
+    },
+    {
+      "label": "create session entry limit",
+      "signature": "2cQ86G4v7yri6LARzCd6cYAsc7vP5ZHYtaXMDkpDwyCNgusxxmtuKvMFB7eoG8pPNgENnAjiq4FMhttNQ1JNxXfd"
+    },
+    {
+      "label": "create all scored but unfinalized timeout",
+      "signature": "5VkrWMWypuChVcBpDi4abnsKSPugVo4Kh6eQuEj2d517DtDXQTEPuyLs6f4VXB7K6ifs93Z1fsUp5QndjiduASTx"
+    },
+    {
+      "label": "grant session",
+      "signature": "bMzCd2cCRot3pxYtaqroXTBJdr9DLWDHH67jcApG5ioFkVDyFNgr1xH56cgM3Ndm8UA1fGvbdcMPLmH2bGinFvH"
+    },
+    {
+      "label": "revoke session",
+      "signature": "Uxe3GQKHuSgaGjsam4nUFkEMwr7Ejkg18XZPWf5pAHfedFmVtSDamfJBJMYRW11nLgk9TnqCDvXjR59seimc7mW"
+    },
+    {
+      "label": "grant session",
+      "signature": "rb9tZ4TwPyR5HZx3fKLGebyqFKkofFoqxFXVWXy5ToVAdQHxZmGBkwVmUUHooFfokaWRrDKZ1U1KVy3ozv5Tzi3"
+    },
+    {
+      "label": "join single-winner",
+      "signature": "3jcDtRDPjECqhPZu289XW8curawui5r1eDFChRWMCPw9ivkLMucHmqQuFPTQ1KJix4BhebugtDocaQkUCG7bJPAc"
+    },
+    {
+      "label": "join missing score timeout",
+      "signature": "3StxVEVWkESHXTps7wPMsEpsrEMF8f39YsDQjf41FffkpeTkhGPhea8L1Cmt8qsJryfYCchnk5P5Uf8JiuDSriqs"
+    },
+    {
+      "label": "grant session",
+      "signature": "3FF8NQn2Hsnw8jA9jwGUxhPUSG7mzp7gDdDSCw5ExLxFiQnGATW8WJtNNNWUof2nb7hiDLJyAy8wPMsM9Jz8BWPX"
+    },
+    {
+      "label": "grant session",
+      "signature": "3kRtCF5cWw4wMkD8AWTW42oBnkMHZWyBna9nAcnUde12bpPbsNboqVFaxEaBXNoATaNnEnZZUYz8mR41yVeKfaUG"
+    },
+    {
+      "label": "grant session",
+      "signature": "5QsXTVr6EPeCy2vLnpG67QcxH42jdbGawKuYEcq4NrZG5mHqkY4DC6ZFTvB4TimEugFXxDowCDF1D4hfLNB9ksDH"
+    },
+    {
+      "label": "grant session",
+      "signature": "4eWna9siNX6b4BFFtiQ7LCsvSyqeHjgjM851QYEDPEpPwEb68P3B6VKUELsZpxJB63zrPa67TBJo5juyfJtfYTgr"
+    },
+    {
+      "label": "grant session",
+      "signature": "3R79TpVmLPsATQhtraDgPVKK4xkSsKaw4UGiL5FQaY41w7s1R1B4DNhDfc6JEjtr8PfHJ7oV8ZJRyDKtteTgrmHa"
+    },
+    {
+      "label": "join session entry limit",
+      "signature": "4D6kZrTsw3a7EAJbQ4MqkYrCbNWDgVFEChJFxQJgisa7uV1qQJ3ixFwggqVjBeuvwTMdmtwTSKiHGTBrbX6YA7FB"
+    },
+    {
+      "label": "join single-winner",
+      "signature": "2WuqzB5tCqNnfK5hbRsAknVfmfncgfnPyuC64eEYNi1tGutpNEbxVQbXEzmYySzf6EztT72qtEyZ5UsqEAbrE8TA"
+    },
+    {
+      "label": "join single-winner",
+      "signature": "4YRDsgTZ99i6CdChBiZ5KEva8dMxUUfS2hJGvEpiz95t1E4XMrPobd3Z5W33W4Tps1DPw4qQw9u1sLAkWyKZdYwG"
+    },
+    {
+      "label": "join partial tie dust",
+      "signature": "2VKZSFG52HnTT2NyP2KfsRod1FqNpMg2UTN828vymww1MZ51VHxW9kJSsvURnCaYEVDAA1bZazEccfP68uTgFBhv"
+    },
+    {
+      "label": "join partial tie dust",
+      "signature": "4CgLV7HQBWMN7fd5S1ifT6xxViaadYRs4WMwUj2k9vK44UMzyyDyacUky6ArAExcBqbMJYNSR2WE8ffwY3QXT4FR"
+    },
+    {
+      "label": "join partial tie dust",
+      "signature": "656fCnyCeiXpGQMMUi6pG865j5kZvA7MemJ86F9NnmVVAhnSp8sYuXFE58Z7BVfM2kbzBzFBoBWCZo7HuMbSH9WA"
+    },
+    {
+      "label": "join all tie no fee",
+      "signature": "3guvuXG8nbJS1ocZsAWY9do4nDMcQAMPhots9qqYsxTtdfzCbreUTxNWVhuRgqFSiGtEK1WEkRAitebLqY7eW18V"
+    },
+    {
+      "label": "join all tie no fee",
+      "signature": "38dPEXtbqS1aqmiadgnsTYRk282wxLFjicXNGELcTjzctL4p36GnF4cqP5DBtEtjDrGyY3eJUSs6KNcqVX4QNSiZ"
+    },
+    {
+      "label": "join all tie no fee",
+      "signature": "4TWeCGwAVp4tRJLwmUb9UcdZZ7KL6FCTq9DR94vNWkL7k2VxcdPZQc3zYv3PcEN8x6DMeYqS3P9C8TdKKSWjQrCL"
+    },
+    {
+      "label": "join missing score timeout",
+      "signature": "5C8xuAB2gmQ1mf69zKax81TkQBWwTurfDAj7EgyvaftaLZjtTVUJbdChQC5T5nWspPBfhvnF6iVuXYzDwnHA622N"
+    },
+    {
+      "label": "join unfilled lobby refund",
+      "signature": "5V31G5UFc4JAKnLcLZ5iyTwg84moCJmNeaZyhtAJtzbLM9FEVi6Y4YN5i9xpffePcncVM8Tstx6fWUHaYVqRngGU"
+    },
+    {
+      "label": "join Token-2022 round",
+      "signature": "2zgQEhqF812k4jV6WmTYxmABSt1Cpcwi2oxDBQQAfiZmUZPyJSHrqzjmfmbruyREXv2G4zCHAH5hFWxvhHbN7mFi"
+    },
+    {
+      "label": "second Token-2022 deposit",
+      "signature": "bSRQ8jmpdJB2RJJ5WZjFVYDL2Em7xNJcQU57oXexrLeEGS5jW5o6XPT8Ey5i7jpCq9SpMaUSsyj19J8vREPK122"
+    },
+    {
+      "label": "join Token-2022 round",
+      "signature": "2VHHF2AHuyyAJcxZYLpPucoADpWqhh6Q7jkpeMuUUBPbe6DZJfXe5FygSVbuLu6tbuweVjHnRGUo1HBgmM9ouvGr"
+    },
+    {
+      "label": "join all scored but unfinalized timeout",
+      "signature": "vpcE4xrdjbBtSG4KSdmLgF683QC2YJzmZ25PBNd7mRf7gmnzw2ZMCKM8w5K7zy3DWaPqaFhkcSPRcKQo9KBSwWT"
+    },
+    {
+      "label": "join all scored but unfinalized timeout",
+      "signature": "5a2A4Q6vQZJ8sk3hBkQyjYwUYhp5j7daAzw6xKrXyfDSVfF9b7cxrAgYyrYXkv67WhUNUKiE6BovHPrVj8XTJoyH"
+    },
+    {
+      "label": "fund fourth available balance",
+      "signature": "5tEYNbk9yN1GzRVDUo6QxTtr5z5hRMtF9M42KTv44TySCrtsRFgXXCmm6mWcyuJsP6EvqyygVCiiKMYRqa6camYX"
+    },
+    {
+      "label": "cancel unfilled room",
+      "signature": "5S8LMt6LLCSFrj7FPpXpVTmdGJDpg9VD7uqGaktAEkxVdGuXYouWH8W4uncwu2jAgkbJfMT8AaHY4ZMsZSVsM6Qe"
+    },
+    {
+      "label": "cancel empty room",
+      "signature": "vX84zmA5Q3xKpETa6c38nU8eeAQX1kK29NqjAk71EYtbh7saqYosvrGGZQ7yY3NHD1q9r5zeC9pjkGEw3poGKQu"
+    },
+    {
+      "label": "cancel unfilled session-limit room",
+      "signature": "2yQhPsjeSu8SFPeYdG17FcVr789quiGMRp1mBUM1qc4qh4JfSQ8WKQaEjLiRLKrsYWNHBYZaXbHSJCuDDHBgz9ZC"
+    },
+    {
+      "label": "change future room verifier",
+      "signature": "3e5dbfXeK8vVSpedhSYK6JpHyJB6pDTQB3U3xjzvjcGuGXvovgwaSW3p9qiro6gMYBp8udb7ewGHRqoB3rjv2MnJ"
+    },
+    {
+      "label": "old verifier remains bound to existing room",
+      "signature": "5yS86Rk27KKeU7bZyLKNEGxz75mDD49YBrigDZHePFJzezm6cBhLTtQLCQYeDN6UhPMe9afdBfK4Yk6h3jgqSoDJ"
+    },
+    {
+      "label": "complete and atomically finalize winner",
+      "signature": "5Te6ei4NcqkR3f5aygR8kN4LC3VoEy3di8UJD3XBTQJmEYhaoUXzsWyauW2XQQsLyy7YpNq8padSsFub3iPn6iay"
+    },
+    {
+      "label": "partial tie and finalization",
+      "signature": "35esd4nkAEVNTTUXBaiE9Q7W3kk5Fftjq8Nv2Tu26HiPnAfCz2d4UXW7R1BpM4328kosayu5u6fvc7CECHyDd2v6"
+    },
+    {
+      "label": "all-player tie and finalization",
+      "signature": "2kARzQp8ZkBMarVF8ZPihV1CE43UuT7HDcYd7KhHKHdQ1CuLYZDEdtt45m8ozafH9eeNgto8Np8dSJVbbrQE3ddN"
+    },
+    {
+      "label": "Token-2022 round finalization",
+      "signature": "5sjhWsatXhi3yM5ApEyfcjEbe76k7cMUzjakEhGX9mddoyn9AK4NhFyGdA5qCUZuJUd8vgesNHBxxYswXv1kagZx"
+    },
+    {
+      "label": "only one timeout result",
+      "signature": "4TZutwhoR5ympzq593yrsDEXxxNxnR3UPoNNfT9q2BMWWZEPpDJTnpc75UFAgVstbBU1ERMmxdnUKtk6CRZ95kLM"
+    },
+    {
+      "label": "complete results left unfinalized",
+      "signature": "4aHT8E2wuxq7iczEwoP5mNbozEQ7nHrkV5YA4vUMsNwr112MKs7kmd1c8uwhiTrp6nQkujFjxFW3UdUSGQyLa9Fb"
+    },
+    {
+      "label": "timeout permissionless cancellation",
+      "signature": "4g82QsLn4or2anaA6JDDnGaYmjf6KaZRpFMJfbDDFNrzdFDyiPpBZ4VW3wnESZctqHmGNnfWCRkt2nJNyzpmDgi3"
+    },
+    {
+      "label": "fully posted but unsettled round refunds after deadline",
+      "signature": "2ichLU3Qqs68NJ53h51w4bPMM3swfwJUcQb3EsUCZhvMMzD5k17F8UfbFUv4DBopaUjhgwRmfUMwM56u4gnLnqSD"
+    },
+    {
+      "label": "permissionless credit single-winner",
+      "signature": "4rpdSbkgK8JugudWf7RmapGmPjhUqFg486RyWZToPzGeYUg8oGJRqTLZd74bA1TpWmy1d46w9Q6tkgmabwe5eHKA"
+    },
+    {
+      "label": "close claimed entry",
+      "signature": "YBknHbW9qc8dKryea5t14H1KU8U4ui2Fcnb5tQL51zDwquwTcp2RCgBTsmb81gUusTxrPe2WdvR4rZ6knVJTcMy"
+    },
+    {
+      "label": "permissionless credit single-winner",
+      "signature": "1jyFNyWRPeYFhSzJG8cLFWV6QCY55rqYdwSWMGAzxHMvzw5uasWYyMxjKeiKESxqXHzNY6jQps2ogtxneoS89pM"
+    },
+    {
+      "label": "close claimed entry",
+      "signature": "BPzD2Z3zjEjiYpmBkBUhZe2a2qfso8QbghJBMZACHNiVKUr7s42spnAtX6cM4t8LWpLtz31FNwASMxw2RtBMsXD"
+    },
+    {
+      "label": "permissionless credit single-winner",
+      "signature": "3YpE9i7q1WtKehti2MQMwgzhXBZRYgUFY5vni4PjFN2c6g22zcPp8BFya4yjHKTDMQ7tsDKbCXAmV2fVfMtSfacQ"
+    },
+    {
+      "label": "close claimed entry",
+      "signature": "tXJGBz18NsWchmsDELfHdNxzpTqpuxRFp8SFmKpFL1debTmYxrT58NYk1jt2hAHThAfx76vA3VtXurUXbA5cnuS"
+    },
+    {
+      "label": "credit immutable treasury",
+      "signature": "2yXCsG7Xoe9F3EHZSZPApmLqsXoGGrRhpXEAmSUMqkr28jGtMsDSHMYfjYEudd9uzXqGpBnVBbabSySuxU2n4DKT"
+    },
+    {
+      "label": "close completed room",
+      "signature": "3x3SNoQwTZWM1h1wYEePBxAPbwDfJLP94WPcBQd5rAEwoHm3oGS4nDmWzjYUUfWR4bbJKeULCc7NPBKcsq5nokxD"
+    },
+    {
+      "label": "permissionless credit partial tie dust",
+      "signature": "541V3sLN6NpZFjKK6ADkHKKyhiDwAQF5L5bu7doskw2gKojVwLgZviJVnnxb5kv4HuEfNzqW5RSZgY1gwvLaMbgX"
+    },
+    {
+      "label": "close claimed entry",
+      "signature": "67MSceVTek35t9NCn1c52XittGfpEnMox95f5erapPmFnwF7Y7uNvnDpzi1hpeuSEj2gftJaoDJy6auxvLhiTbW"
+    },
+    {
+      "label": "permissionless credit partial tie dust",
+      "signature": "4pSrMCEiRGrLojWeFsZToHzFNZfVDGDUVP3BNLhe35M7Z5ukZyAwQpP42CSHewVEaTML1Ds8MBHX6fmuhxe4bRdR"
+    },
+    {
+      "label": "close claimed entry",
+      "signature": "5tc9CFrqdRA8DLuut1Lq4e3cojAUYLWQjL9Y8B6rQXRC3KNY37NX5175tQBZG6fNf9vLrzrdFzBkHzNH7xJQFNTk"
+    },
+    {
+      "label": "permissionless credit partial tie dust",
+      "signature": "2SuH4CBJQYQgz43v4p9XeXhp4dxDm4y9hycWJmAJPY6pMb4GKk2iPcvJAwNxEb5NpFbsXMcg7tKSeM8KJekyNKAG"
+    },
+    {
+      "label": "close claimed entry",
+      "signature": "RFggesQEgRb5CYm7BEDgrWmxmf8Z9yttHtJGcUPv3gS3Aa6UfypL9jgvbs2jfzG2sAWSteo8Ug1yHbLxkEtjQp1"
+    },
+    {
+      "label": "credit immutable treasury",
+      "signature": "2xVDuVyqqTnXAnQMyLf71DZhdJCTWkGijwLoafqzZcE8LKgZsjQqFbeGjufqzDZsEJPSvCDjFM733SmNgQ572B6o"
+    },
+    {
+      "label": "close completed room",
+      "signature": "3sVearxRDF15Trx8LJc2Q81Y9y3aUKYdQVEggFqWTJ4qtJPxUpcxzWKgeqPS1cVW5Er9VUEevSdzu6ShHw8aRELo"
+    },
+    {
+      "label": "permissionless credit all tie no fee",
+      "signature": "2UqXG3LHa1DADGGspaXKn8iqzoyvhGMWGeAvRf8GwH6gAVKPrtK8CdJnoyKDiDPFakYSqg2FGo83HBb9W7fm1gJp"
+    },
+    {
+      "label": "close claimed entry",
+      "signature": "4Sqmtxif9VtKb3rhNRhuP1SbgtShKs3mERi8Vub8E1kr1YJFFKKD3ykgYzrr1LgsdgjN44fj5Q3FetHm13VQxiAy"
+    },
+    {
+      "label": "permissionless credit all tie no fee",
+      "signature": "537jyWN79J557unakGrTFou5iAHzk9thbFo57zRX8eiEcTkFcd6mkEz9UBN5t4UcQukt2BY5RGpLCbXuW83XkvoC"
+    },
+    {
+      "label": "close claimed entry",
+      "signature": "55YcPn7vCDZDLiPo5f1p9Vbe4S8WPjR8n2PUn1nvQY2BpLg9bW13rR3t47mL3bNuHQZ988F7dAze8ApnFwYhyM5i"
+    },
+    {
+      "label": "permissionless credit all tie no fee",
+      "signature": "XW8p1djknJyAmpefwPweEv3dvDvAQFBiQRBNizbBptwQeZ3VPBqpDnGTGTD6P6TGSsPirsoL7RNMGqiKesaipZu"
+    },
+    {
+      "label": "close claimed entry",
+      "signature": "5JHq4dAsZby9mdHsfL5Ba14MLDNA5RvTq1yUYcy36HhyS3MwgZVbuQQwbe6RErwCSjH3gw1dMtiECSHkosRZN3JQ"
+    },
+    {
+      "label": "close completed room",
+      "signature": "26S95qvQ8zj4We9pj6xZmancFmcYyXAaWfWYDnWUD8fCezsPGR6TXPpTZZukruveH9oXUBKSxNzktjVp55RgfND2"
+    },
+    {
+      "label": "permissionless credit missing score timeout",
+      "signature": "3yHn9ENU5CuaBnjRMZvfubRjgPvAzvqgETtcLixtQxY4KXDV8c6ThmksPtMMLE9myCeoEzCQm3Vx9gcA9atdocxR"
+    },
+    {
+      "label": "close claimed entry",
+      "signature": "26e7Y2HuR8G7Vussk8VRqEhF9MjNHP2gGMtUigxTBwW5aaMq96V4m4GnBhb9SLVW6DnycPdtP4xKtZLRMhde2smQ"
+    },
+    {
+      "label": "permissionless credit missing score timeout",
+      "signature": "2tiVQPjFfyY96NgKUgzN1RDhCUaqqpLPDbCUdM1R94EAFpJVgyVJjniBng5dXbDbwbSw6uVYvVKZFrBo2H7N7VGo"
+    },
+    {
+      "label": "close claimed entry",
+      "signature": "3KHsuZiUVyCvQLSGDd49eHH3e67jxZgQixomMW6YDSPvdoQYk6iBwD82cXkmm93EEnCopdch9FaWPvKjUtPMH2hM"
+    },
+    {
+      "label": "close completed room",
+      "signature": "4KRVAVGCYgynojatZBG3QQK82zcuXE6aqxpeD4PTM93PtLp24hNm4r6cSvbm1h2fz7pDenKZ942AXqEMTt6K26Ps"
+    },
+    {
+      "label": "permissionless credit unfilled lobby refund",
+      "signature": "3eRtuzhUVdLuGNegBRG53nLeiZEv117Aoe4v7X96HBrygoYmPMhbRbrmMzSZryGZJU5zi6fXHtroJei1aJ3TG2kg"
+    },
+    {
+      "label": "close claimed entry",
+      "signature": "3qGgReNsuUs1VbcT4cyDquYdJZwhADpyeGAyVrm3xWZzGc4gqa4n3CqK2q1jx5Vc1noPoWbiXFvk47WY92xB3K58"
+    },
+    {
+      "label": "close completed room",
+      "signature": "3KyPkELTR7UWSHcSiPdehuqgPjZv2LPpTkKdTc2X8E9C2nkPsieqPxjEbEFGxPf7GLMfQNJ31m66q1HJ3ynNnGBn"
+    },
+    {
+      "label": "permissionless credit Token-2022 round",
+      "signature": "3a3b3Pcqz28XVabyQmaN7gvsjt1KSMWRXD5Mobw5wFxp9x7uSWoHooSTXp8DXNYWqgNRcyt3nbzFbdRucJAapyFt"
+    },
+    {
+      "label": "close claimed entry",
+      "signature": "2NFUQ31SKzZfbcCUdKo4KFPw4ZfuLmEY34S9xC6en3SmureyizPj2ZQ9nCWHQZMoFQnz8rExVheS5NStQT3wrXt1"
+    },
+    {
+      "label": "permissionless credit Token-2022 round",
+      "signature": "64hBMeqGuu384AeMuE1DUeV6Ai1BgrwyMfCwBDrLy214kjeYLirN8VXiGezW9UCf5iyCRMSP6PPQy13Snd6QxvqL"
+    },
+    {
+      "label": "close claimed entry",
+      "signature": "42rwsTkTA7sj7gJpsbnr6ykZgKBiW6moHF73maQLUxqjohwdMCLFqDuL4ZWo8BHvhCzBLNEE4XTjrjHQTHYPs1Ve"
+    },
+    {
+      "label": "credit immutable treasury",
+      "signature": "4VBs7MqwKFRY9hAtZVk8jt5Hq2vs6r1d4ZQkLAVZM5J7GNKDvEF1Us8xZ4jGh8RrxT9fhvdzc4KXAQiXXsobPC8K"
+    },
+    {
+      "label": "close completed room",
+      "signature": "4WHDSPny34J2mePfepumsU9eMEgnBV5hxQXR46UVpwVHdtRVWcdiCewhDLwpTA1vhwqwAWAcSWpAjo2dh8WEJV8i"
+    },
+    {
+      "label": "close completed room",
+      "signature": "46ja62VcQFkQJxQLLjjsDnEiqSH49QTDKZkCL4PyTtdpcgLxxVN8vPmawYPhmVLezUAJMqKXE6oEL37cNWBiwv7v"
+    },
+    {
+      "label": "permissionless credit session entry limit",
+      "signature": "349BsUy1uHiV3TYREHZbNqz7qW5j3GZPgzMPntwLnwDiqBNziZApkaQJT64CKYEbp6p5hHodDb21tSsJeszo1ms1"
+    },
+    {
+      "label": "close claimed entry",
+      "signature": "3j1v3ARMhRG81kGaiHnDr4Uni9CqYLLBXa2wxpHbo13GNjAL8jjBce28TJTFpTDzZeUaRxPbS95cXvQk5JJ2xXFT"
+    },
+    {
+      "label": "close completed room",
+      "signature": "49jrzYzLZNv6dnheGGC8kYz2uNSQuGboGyTWyb7WXD7nv5p4bbiSzUn2hpt9Fq6WeGMgic4nnzNcH2kFxf7XfBTt"
+    },
+    {
+      "label": "permissionless credit all scored but unfinalized timeout",
+      "signature": "3ZuT2p6kifti9r4xagMpWKTwztbtABi2UsLG5XbL3yogCTt8HALCfSeeHHbVqABqoQYAgi5vfy7w7pDAaQsBjjsU"
+    },
+    {
+      "label": "close claimed entry",
+      "signature": "31tDU6jEmLHJsS3oFq6aSqJ1int7ZVLhFvy3vQHPREiZtFZgVN5TeTSLbtRdF44pgMjCr4dSfCThaDmoxcdGtRm"
+    },
+    {
+      "label": "permissionless credit all scored but unfinalized timeout",
+      "signature": "oKdHB2Uhy1SHcpheE7c9ZY54UxGEMehoeVDikiaqyAUTZuVSQbNQwTXG7FUfxi4N25DsauPffQfJ4nQr5ZCzHfP"
+    },
+    {
+      "label": "close claimed entry",
+      "signature": "4PNJXrKTAZAX1LEPzxDRynMrNf8fGzQNg5swXRNCwb8NGoeA6kGNrZNBQkLRnVtMpx65Lw4JqkdUVJNqEwwibAEj"
+    },
+    {
+      "label": "close completed room",
+      "signature": "iLu4PQKEKT11bejACkCEqokHu66U1CeTi4pQnUxcmSqZ4S31Zp825TcveKrqoDRdQb6fEqMzFEsBbiKUPfoK5Ti"
+    },
+    {
+      "label": "withdraw SOL winnings to owner",
+      "signature": "4wftHiHfLeBAYF1VvgDrrm7wyQAqTmig8G3Z2u1vDf89QZdbTVxYGaJYtZFFLGWurbsEGEPiVeJdTszRMuZPNY5W"
+    },
+    {
+      "label": "withdraw token winnings to owner",
+      "signature": "3nqLggeaWaPTfR5UT7nKLyrs27CeiG7ztWXTCRxWhEmYsvLzqCL63zNpmq6yKqpPiQhLTDAvWwpMuGsQ526sZF3N"
+    },
+    {
+      "label": "withdraw token winnings to owner",
+      "signature": "2rvzWojiq2a5AF8TYafYZjm3iq226uUCpYxsBNn3jKR2a5DJThWSVbHKaFADNQNNQt5gY6oxtfeD5AP462QsgHQs"
+    },
+    {
+      "label": "propose admin handoff",
+      "signature": "3q7jcUJAsdbaKbB1ogLUvSTtdiJer9LFxTtUM6EUsiuB45oawSR8a4KrDwsyGq1TZ4V56eLGehp9yuDdzRiCb33j"
+    },
+    {
+      "label": "new admin accepts",
+      "signature": "56coPpHrSTzziDgDjdoam7C5eyEFey4wPy3otu7TCnbUPLgndiVjRerZjUYbPrELmashPXaVwEw1BwWSbHKLv2F7"
+    },
+    {
+      "label": "new admin restores verifier",
+      "signature": "yghsr7aEn8JMJmQSb8SvHoJxHjPL2QCEmWVtaNzcRir6zpTY7FdwnVx3dtGSya6Vpp29trYoG7hSx5ffWKW5zEV"
+    }
+  ]
+}

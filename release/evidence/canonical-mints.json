@@ -1,0 +1,79 @@
+{
+  "at": "2026-10-12T14:13:13.288Z",
+  "rpc": "http://127.0.0.1:8907",
+  "genesis": "8Kei9Ny3m3Gtn2LEkobe1Eu87DBbceJAcnFnUbeV9vPu",
+  "mainnetWrites": false,
+  "clonedAtSlot": 456073956,
+  "program": "5ZkKsZVj1ZxtiMnydGn82ojs4rSZ3ARpWLfP7w9AFYo9",
+  "binarySha256": "adcbee23ca36eecd26a5eb360dab509caf0b96c6e6708e660967f9a10f117090",
+  "receipts": [
+    {
+      "label": "initialize local custody",
+      "signature": "aPrPJi4SHEM7gwh8BZAEkeeoT4obPa1HFYxb59BVR6N2jx6HfN14DWdQ523smaGCacy2zZUdSpByKh58aZ15F3w"
+    },
+    {
+      "label": "register canonical usdc",
+      "signature": "5cEJkGMY49fK1y8zpy37XoXi7tyeVFZ99unyGpgRQW8YEmJMFWvqhtAgVHTnaFNQVDamyYcScs5FDHG7AHyCPyGY"
+    },
+    {
+      "label": "deposit canonical usdc",
+      "signature": "d8WHPAw3g2mwv9F2WVwWQ3uE66MC2Ka9BExANLZTpSRqWEbpp8XJv8NzkADutCpifKgZMojsoheDrRvNW3ppXss"
+    },
+    {
+      "label": "pause with canonical usdc funds",
+      "signature": "5vP3p7NBMRaKSVoX4uXHvyY3gBUoB3BjUhy8eXXhFbqCEadtzYVNGvPmcf9zYvPLmCXh4qBrAhmhhFXHPdGWCcdD"
+    },
+    {
+      "label": "withdraw canonical usdc while paused",
+      "signature": "4isvMUw9XumRQHTT8RDyj3NdcQ8DhfAXV7vY63QYMdbdTT9DGJWGy9RH7gV8WLsrgSGyY8myXhpU6nrybKaYDRbB"
+    },
+    {
+      "label": "resume",
+      "signature": "2D7iACNeS13WMo9UvHzd7ftw76x6MTAh8ibqmyKQx2dnE4XULJBWia1kefkMjkY7ixNwdxnRH8Ja3VdDtxEfZqRS"
+    },
+    {
+      "label": "withdraw remaining canonical usdc",
+      "signature": "4VPh7VxuXGD7bWHvrTVnwVpuWTHfxjZEqXNeGMpe1DWFBxBXv2b9Z82DDZsAuQB23TgV79cwVV3hLiUbBPrwD2oK"
+    },
+    {
+      "label": "register canonical cash",
+      "signature": "qqcdsB4RD7yqeTCfkJRuqeysVhoqyVE318jf5dkhACVJZEmfGaK2ztGiFdnFBNGhgZPciy2X56UYZ6PRFxQQ7i2"
+    },
+    {
+      "label": "deposit canonical cash",
+      "signature": "5tvzfa9z5aqajo7pbSWuUodYU5iU1HnLNoGzbLLjDv8Z6Yn2YM7gZgS6fCkwGTohZTYVazAwdYQEodKnmXmbJV6g"
+    },
+    {
+      "label": "pause with canonical cash funds",
+      "signature": "5iwuNQE9hnBduahpPqsy4ezDTk9XjMuZeUXxtNuv66522FTmAE8cqbzj9Xdyao5GjbS3kCptJna2rmLX9fPtey9R"
+    },
+    {
+      "label": "withdraw canonical cash while paused",
+      "signature": "2LeDRzY3USDpQFcnKMbEuC7XZJtb8YW4TwGMJrqHXnv1Uvfu7qfRndJnZyKgfFNUu5C1qtWzvraVRqrXu3t1zoBA"
+    },
+    {
+      "label": "resume",
+      "signature": "5tUuoeQCRw4P9hr81Q5Sb1wVHPVXB61nYijrWMD46iyTaYgGWKpjE6YPPfLmVKgJzzFWREFjsrdK96RYLik49KZj"
+    },
+    {
+      "label": "withdraw remaining canonical cash",
+      "signature": "2MxF8LxA5HjpfpuEZdvJ1YsUNJxrqp5H121jm2MM6cM4FR3DEqTit97wB5v1NgQ7PtVDzjVAhB1eZAFw6die1fAt"
+    }
+  ],
+  "balances": [
+    {
+      "id": "usdc",
+      "owner": "100000000",
+      "vault": "0",
+      "liability": "0",
+      "mintSha256": "160ad761133f22671ca07c1d5fa1e4eca7c678ae91a0c68cbe2eaa050dd7714c"
+    },
+    {
+      "id": "cash",
+      "owner": "100000000",
+      "vault": "0",
+      "liability": "0",
+      "mintSha256": "fb5b8c186fc5933070242f3c403f91d5d724be1d00862d3f26fbd3712f8c1921"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "format": 2,
+  "reviewedAt": "2026-10-12T16:11:10Z",
+  "binary": {
+    "path": "onchain/setup_rush/release/rush_arena.so",
+    "sha256": "adcbee23ca36eecd26a5eb360dab509caf0b96c6e6708e660967f9a10f117090",
+    "bytes": 621864
+  },
+  "files": [
+    {
+      "path": "onchain/setup_rush/Cargo.toml",
+      "sha256": "dbd714c64166d92c8550badcd0964293191a945a0de4a756d1d69486e772c57f"
+    },
+    {
+      "path": "onchain/setup_rush/Cargo.lock",
+      "sha256": "e4dac150172230819e7c40d434c6555357d65342764af3e05b892d2733cd93f7"
+    },
+    {
+      "path": "onchain/setup_rush/Anchor.toml",
+      "sha256": "a3ef11f7816f235c089467567527949a0cdc75acc7a53966c1ffa382d0bc31a0"
+    },
+    {
+      "path": "onchain/setup_rush/rust-toolchain.toml",
+      "sha256": "72659cbb160b72a6a69202329be51728d0dd1d2acd3e234928cb369786b0a760"
+    },
+    {
+      "path": "onchain/setup_rush/programs/rush_arena/Cargo.toml",
+      "sha256": "3722df639113a089d6233fa96ffc0d132dc55690039850c3481dce336a6cee10"
+    },
+    {
+      "path": "onchain/setup_rush/programs/rush_arena/src/custody.rs",
+      "sha256": "ba96cacf645b4d42f869ae1f78e4b4a29ba3af42ec11a8d3456f2c1802b631f8"
+    },
+    {
+      "path": "onchain/setup_rush/programs/rush_arena/src/lib.rs",
+      "sha256": "6faf598e1592da212d4f42412d7eeacd75fc5ccccfdb570a5bdc6f1e4f82ffe6"
+    },
+    {
+      "path": "onchain/setup_rush/programs/rush_arena/src/rounds.rs",
+      "sha256": "86a06bb94fbd161b81659c9481876be3fe1992e1d1789c2006449163ebed125f"
+    },
+    {
+      "path": "onchain/setup_rush/programs/rush_arena/src/state.rs",
+      "sha256": "dd41e96c973f8c5852b0e560520f3cd4e26a42695035dc1f52b5118f74cf66de"
+    },
+    {
+      "path": "onchain/setup_rush/programs/setup_rush/Cargo.toml",
+      "sha256": "2fdd1e5545cd0293b6223475c1544642c67d9199be05670997963150fa30061e"
+    },
+    {
+      "path": "onchain/setup_rush/programs/setup_rush/src/lib.rs",
+      "sha256": "d1a81f73daafb036b00209390ab6c705cff0e8e4c805433e0fff279a2b4c104c"
+    },
+    {
+      "path": "onchain/setup_rush/release/rush_arena.json",
+      "sha256": "997497e6864890a036dae4fe161df6590efb77ad7db9b2df987e2740ab92eb56"
+    },
+    {
+      "path": "setup-rush-app/src/chain/arena-abi.js",
+      "sha256": "3a899d8598a629e85d3b7aea22d4a933c7f038e92071d421eff3f80535e8f465"
+    },
+    {
+      "path": "setup-rush-app/src/chain/arena-protocol.js",
+      "sha256": "c7e5f3cd4c638636b4f193c5be9849c099c936529ec2600f3f8ed86189248c48"
+    },
+    {
+      "path": "onchain/setup_rush/release/evidence/canonical-mints.json",
+      "sha256": "75951cf6c220962fcda041cf1a560d6354e3a4728fd3b1e544eb73665e26629d"
+    },
+    {
+      "path": "onchain/setup_rush/release/evidence/devnet-upgrade.json",
+      "sha256": "f5938515a0f1af03ae8c7ed38dc81b9f11d17d257f696d5c823d81f206c2a3f8"
+    },
+    {
+      "path": "onchain/setup_rush/release/evidence/instructions.json",
+      "sha256": "309371dbee74f53c33214965a5fc03fab78759a073a80e4b09c57d711156279f"
+    },
+    {
+      "path": "onchain/setup_rush/release/evidence/rebuild.json",
+      "sha256": "ba6794cf94426591835fd1eb543041e5d1fbc2d8691674bfeb174926db6b0f9e"
+    }
+  ]
+}

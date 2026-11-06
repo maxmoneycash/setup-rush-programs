@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-12T16:11:10Z",
+  "isolatedWorkspace": true,
+  "locked": true,
+  "binarySha256": "adcbee23ca36eecd26a5eb360dab509caf0b96c6e6708e660967f9a10f117090",
+  "binaryBytes": 621864,
+  "matchesDeployedCandidate": true,
+  "buildTool": "solana-cargo-build-sbf 3.1.15",
+  "platformTools": "v1.52",
+  "rustc": "1.89.0",
+  "command": "cargo-build-sbf --manifest-path programs/rush_arena/Cargo.toml --sbf-out-dir artifact -- --locked"
+}
